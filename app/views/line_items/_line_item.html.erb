@@ -1,0 +1,15 @@
+<% if line_item == @current_item %>
+<tr id="current_item">
+<% else %>
+<tr>
+<% end %>
+  <td><%=h line_item.product.title %></td>
+  <td><%=h line_item.quantity %></td>
+  <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+  <td>
+    <% unless @allow_cart_mod == false %>
+      <%= button_to 'Delete All', line_item, :method => :delete %>
+      <%= button_to '-', cart_line_item_decrement_quantity_path(session[:cart_id], line_item.id), :remote => true %>
+    <% end %>
+  </td>
+</tr>

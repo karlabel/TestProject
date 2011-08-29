@@ -1,0 +1,6 @@
+page.replace_html('cart', render(@line_item.cart))
+if @line_item.cart.line_items.size == 0
+  page.replace_html('cart', '')
+else
+  page[:current_item].visual_effect :highlight, :startcolor => "#ff5533", :endcolor => "#114411"
+end
